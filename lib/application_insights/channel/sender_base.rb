@@ -65,13 +65,15 @@ module ApplicationInsights
         compressed_data = compress(json)
         request.body = compressed_data
         @logger.warn('application_insights') { "AI json: #{json.inspect}" }
-        @logger.warn('application_insights') { "AI compressed_data: #{compressed_data.body.inspect}" }
+        @logger.warn('application_insights') { "AI compressed_data: #{compressed_data.inspect}" }
         @logger.warn('application_insights') { "AI request.body: #{request.body.inspect}" }
 
         http = Net::HTTP.new uri.hostname, uri.port
         if uri.scheme.downcase == 'https'
           http.use_ssl = true
           http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        else 
+          @logger.warn('application_insights') { "AI PPPPPPPPP it's not https: #{http.inspect}" }      
         end
 
         response = http.request(request)
