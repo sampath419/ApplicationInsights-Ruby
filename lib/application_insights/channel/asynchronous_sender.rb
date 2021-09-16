@@ -58,7 +58,9 @@ module ApplicationInsights
             unless @work_thread
               local_send_interval = [@send_interval, 0.1].max
               @send_remaining_time = [@send_time, local_send_interval].max
+              @logger.error('application_insights') { "Asynchronous sender start method RM: #{@send_remaining_time.inspect}" }
               @work_thread = Thread.new { run }
+              @logger.error('application_insights') { "Asynchronous sender start method WT: #{@work_thread.inspect}" }
               @work_thread.abort_on_exception = false
             end
           end
@@ -97,6 +99,8 @@ module ApplicationInsights
               @send_remaining_time = @send_time
 
               # finally send the data
+              @logger.error('application_insights') { "Asynchronous sender run BFS: #{@send_buffer_size.inspect}" }
+              @logger.error('application_insights') { "Asynchronous sender run SD: #{data.inspect}" }
               send data
             end
 
