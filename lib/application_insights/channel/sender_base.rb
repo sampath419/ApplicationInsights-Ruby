@@ -91,7 +91,7 @@ module ApplicationInsights
         w_gz = Zlib::GzipWriter.new wio, nil, nil
         w_gz.write(string)
         w_gz.close
-        wio.string
+        wio.string.force_encoding('utf-8')
       end
     end
   end
