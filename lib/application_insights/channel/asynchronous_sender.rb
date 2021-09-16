@@ -126,6 +126,8 @@ module ApplicationInsights
           # Make sure work_thread sets to nil when it terminates abnormally
           @work_thread = nil
           @logger.error('application_insights') { "Asynchronous sender work thread terminated abnormally: #{e.to_s}" }
+          @logger.error('application_insights') { "Asynchronous sender work thread terminated abnormally_01: #{e.message.inspect}" }
+          @logger.error('application_insights') { "Asynchronous sender work thread terminated abnormally_02: #{e.backtrace.join("\n"}" }
         end
       end
     end
