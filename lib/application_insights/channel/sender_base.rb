@@ -62,7 +62,7 @@ module ApplicationInsights
         # default to ActiveSupport::JSON.encode for Rails app
         @logger.warn('application_insights') { "AI data_to_send: #{data_to_send.inspect}" }
         json = JSON.generate(data_to_send)
-        compressed_data = json.encode('utf-8')
+        compressed_data = JSON.parse(json)
         request.body = compressed_data
         @logger.warn('application_insights') { "AI json: #{json.inspect}" }
         @logger.warn('application_insights') { "AI compressed_data: #{compressed_data.inspect}" }
