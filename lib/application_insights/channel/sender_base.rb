@@ -92,10 +92,9 @@ module ApplicationInsights
         w_gz.write(string)
         w_gz.close
         wio.string
-        @logger.warn('application_insights') { "commmmmppp===wio.string: #{wio.string.inspect}" }
-        fe = wio.string.force_encoding('utf-8')
-        @logger.warn('application_insights') { "fe--------- #{fe.inspect}" }
-        fe
+        @logger.warn('application_insights') { "orginal value: #{wio.string}" }
+        @logger.warn('application_insights') { "encoded value: #{wio.string.encode('utf-8')}" }
+        wio.string.encode('utf-8')
       end
     end
   end
