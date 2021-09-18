@@ -76,6 +76,8 @@ module ApplicationInsights
           @logger.warn('application_insights') { "AI PPPPPPPPP it's not https: #{http.inspect}" }      
         end
 
+        @logger.warn('application_insights') { "At line 79:" }      
+        
         response = http.request(request)
         @logger.warn('application_insights') { "AI final response: #{response.inspect}" }
         http.finish if http.started?
