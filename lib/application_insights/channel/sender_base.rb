@@ -77,7 +77,7 @@ module ApplicationInsights
         end
 
         @logger.warn('application_insights') { "At line 79:" }      
-        @logger.warn('application_insights') { "AI final response: #{request.inspect}" }
+        # @logger.warn('application_insights') { "AI final response: #{request.inspect}" }
         
 
         request = Net::HTTP::Post.new(uri.path, headers)
