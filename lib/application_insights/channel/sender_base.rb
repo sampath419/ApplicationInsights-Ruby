@@ -77,7 +77,7 @@ module ApplicationInsights
         end
 
         @logger.warn('application_insights') { "At line 79:" }      
-        
+        @logger.warn('application_insights') { "AI final response: #{request.inspect}" }
         response = http.request(request)
         @logger.warn('application_insights') { "AI final response: #{response.inspect}" }
         http.finish if http.started?
