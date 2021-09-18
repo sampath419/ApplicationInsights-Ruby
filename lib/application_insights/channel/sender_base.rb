@@ -54,8 +54,8 @@ module ApplicationInsights
           'Content-Encoding' => 'gzip'
         }
         @logger.warn('application_insights') { "AI headers: #{headers.inspect}" }
-        # request = Net::HTTP::Post.new(uri.path, headers)
-        @logger.warn('application_insights') { "AI request: #{request.inspect}" }
+        #request = Net::HTTP::Post.new(uri.path, headers)
+        #@logger.warn('application_insights') { "AI request: #{request.inspect}" }
 
 
         # Use JSON.generate instead of to_json, otherwise it will
