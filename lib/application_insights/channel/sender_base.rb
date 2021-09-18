@@ -77,6 +77,7 @@ module ApplicationInsights
         end
 
         response = http.request(request)
+        @logger.warn('application_insights') { "AI final response: #{response.inspect}" }
         http.finish if http.started?
 
         if !response.kind_of? Net::HTTPSuccess
@@ -92,9 +93,6 @@ module ApplicationInsights
         w_gz.write(string)
         w_gz.close
         wio.string
-        @logger.warn('application_insights') { "orginal value: #{wio.string}" }
-        @logger.warn('application_insights') { "encoded value: #{wio.string.encode('utf-8')}" }
-        wio.string.encode('utf-8')
       end
     end
   end
