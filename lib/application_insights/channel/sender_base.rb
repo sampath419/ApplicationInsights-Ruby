@@ -48,11 +48,19 @@ module ApplicationInsights
       def send(data_to_send)
         uri = URI(@service_endpoint_uri)
         @logger.warn('application_insights') { "AI URI: #{uri.inspect}" }
+        # headers = {
+        #   'Accept' => 'application/json',
+        #   'Content-Type' => 'application/json; charset=utf-8',
+        #   'Content-Encoding' => 'gzip'
+        # }
+
         headers = {
-          'Accept' => 'application/json',
-          'Content-Type' => 'application/json; charset=utf-8',
-          'Content-Encoding' => 'gzip'
+          "Accept": "application/json",
+          "Content-Type": "application/json; charset=utf-8",
+          "Content-Encoding": "gzip"
         }
+
+
         @logger.warn('application_insights') { "AI headers: #{headers.inspect}" }
         #request = Net::HTTP::Post.new(uri.path, headers)
         #@logger.warn('application_insights') { "AI request: #{request.inspect}" }
