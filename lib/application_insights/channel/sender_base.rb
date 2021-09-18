@@ -54,7 +54,7 @@ module ApplicationInsights
           'Content-Encoding' => 'gzip'
         }
         @logger.warn('application_insights') { "AI headers: #{headers.inspect}" }
-        request = Net::HTTP::Post.new(uri.path, headers)
+        # request = Net::HTTP::Post.new(uri.path, headers)
         @logger.warn('application_insights') { "AI request: #{request.inspect}" }
 
 
@@ -63,10 +63,10 @@ module ApplicationInsights
         @logger.warn('application_insights') { "AI data_to_send: #{data_to_send.inspect}" }
         json = JSON.generate(data_to_send)
         compressed_data = JSON.parse(json)
-        request.body = compressed_data
+        #request.body = compressed_data
         @logger.warn('application_insights') { "AI json: #{json.inspect}" }
         @logger.warn('application_insights') { "AI compressed_data: #{compressed_data.inspect}" }
-        @logger.warn('application_insights') { "AI request.body: #{request.body.inspect}" }
+        #@logger.warn('application_insights') { "AI request.body: #{request.body.inspect}" }
 
         http = Net::HTTP.new uri.hostname, uri.port
         if uri.scheme.downcase == 'https'
@@ -78,6 +78,12 @@ module ApplicationInsights
 
         @logger.warn('application_insights') { "At line 79:" }      
         @logger.warn('application_insights') { "AI final response: #{request.inspect}" }
+        
+
+        request = Net::HTTP::Post.new(uri.path, headers)
+        request.body = compressed_data
+
+
         response = http.request(request)
         @logger.warn('application_insights') { "AI final response: #{response.inspect}" }
         http.finish if http.started?
