@@ -48,10 +48,15 @@ module ApplicationInsights
       def send(data_to_send)
         uri = URI(@service_endpoint_uri)
         @logger.warn('application_insights') { "AI URI: #{uri.inspect}" }
+        # headers = {
+        #   'Accept' => 'application/json',
+        #   'Content-Type' => 'application/json; charset=utf-8',
+        #   'Content-Encoding' => 'gzip'
+        # }
+
         headers = {
           'Accept' => 'application/json',
-          'Content-Type' => 'application/json; charset=utf-8',
-          'Content-Encoding' => 'gzip'
+          'Content-Type' => 'application/json',
         }
 
         # headers = {
