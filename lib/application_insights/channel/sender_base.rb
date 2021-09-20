@@ -75,10 +75,10 @@ module ApplicationInsights
         # Use JSON.generate instead of to_json, otherwise it will
         # default to ActiveSupport::JSON.encode for Rails app
         @logger.warn('application_insights') { "AI data_to_send: #{data_to_send.inspect}" }
-        json = JSON.generate(data_to_send)
-        compressed_data = JSON.parse(json)
-        #json = data_to_send.to_json
-        #compressed_data = json
+        #json = JSON.generate(data_to_send)
+        #compressed_data = JSON.parse(json)
+        json = data_to_send.to_json
+        compressed_data = json
 
         #request.body = compressed_data
         @logger.warn('application_insights') { "AI json: #{json.inspect}" }
